@@ -84,44 +84,30 @@ cabeça, febre..." onkeypress="handleKeyPress(event)" />
 </div>
 <script>
 const sintomas = {
-"nariz entupido": ["Doenças respiratórias", "Doenças
-bacterianas"],
-"dor de garganta": ["Doenças respiratórias", "Doenças
-bacterianas"],
-"tosse": ["Doenças respiratórias", "Doenças
-gastrointestinais", "Doenças bacterianas", "Verminoses", "Doenças
-exantemáticas"],
+"nariz entupido": ["Doenças respiratórias", "Doenças bacterianas"],
+"dor de garganta": ["Doenças respiratórias", "Doenças bacterianas"],
+"tosse": ["Doenças respiratórias", "Doenças gastrointestinais", "Doenças bacterianas", "Verminoses", "Doenças exantemáticas"],
 "espirros": ["Doenças respiratórias"],
-"febre": ["Doenças respiratórias", "Doenças
-gastrointestinais", "Doenças neurológicas", "Doenças bacterianas",
+"febre": ["Doenças respiratórias", "Doenças gastrointestinais", "Doenças neurológicas", "Doenças bacterianas",
 "Verminoses", "Doenças exantemáticas"],
 "coriza": ["Doenças respiratórias"],
 "coriza (nariz escorrendo)": ["Doenças respiratórias"],
-"dor de cabeça": ["Doenças respiratórias", "Doenças
-bacterianas", "Verminoses"],
+"dor de cabeça": ["Doenças respiratórias", "Doenças bacterianas", "Verminoses"],
 "dor muscular": ["Doenças respiratórias"],
-"fadiga": ["Doenças respiratórias", "Doenças
-cardiovasculares", "Doenças nutricionais"],
-"irritabilidade": ["Doenças respiratórias", "Doenças
-neurológicas", "Doenças cardiovasculares", "Verminoses"],
+"fadiga": ["Doenças respiratórias", "Doenças cardiovasculares", "Doenças nutricionais"],
+"irritabilidade": ["Doenças respiratórias", "Doenças neurológicas", "Doenças cardiovasculares", "Verminoses"],
 "dificuldade respiratória": ["Doenças respiratórias",
 "Doenças bacterianas"],
 "dificuldade de respirar": ["Doenças respiratórias",
 "Doenças bacterianas"],
-"sonolência": ["Doenças respiratórias", "Doenças
-neurológicas", "Doenças bacterianas", "Doenças nutricionais"],
-"perda de apetite": ["Doenças respiratórias", "Doenças
-gastrointestinais", "Verminoses", "Doenças nutricionais"],
+"sonolência": ["Doenças respiratórias", "Doenças neurológicas", "Doenças bacterianas", "Doenças nutricionais"],
+"perda de apetite": ["Doenças respiratórias", "Doenças gastrointestinais", "Verminoses", "Doenças nutricionais"],
 "chiado no peito": ["Doenças respiratórias"],
 "ansiedade": ["Doenças respiratórias"],
 "catarro": ["Doenças respiratórias", "Doenças bacterianas"],
-"sudorese noturna": ["Doenças respiratórias", "Doenças
-bacterianas"],
-"perda de peso": ["Doenças respiratórias", "Doenças
-bacterianas"],
-"dor no peito": ["Doenças respiratórias", "Doenças
-gastrointestinais", "Doenças bacterianas", "Doenças
-cardiovasculares"],
+"sudorese noturna": ["Doenças respiratórias", "Doenças bacterianas"],
+"perda de peso": ["Doenças respiratórias", "Doenças bacterianas"],
+"dor no peito": ["Doenças respiratórias", "Doenças gastrointestinais", "Doenças bacterianas", "Doenças cardiovasculares"],
 "dificuldade para engolir": ["Doenças respiratórias",
 "Doenças gastrointestinais", "Doenças bacterianas"],
 "vermelhidão nas amígdalas": ["Doenças respiratórias",
@@ -130,10 +116,8 @@ cardiovasculares"],
 "dor facial": ["Doenças respiratórias"],
 "dor na cara": ["Doenças respiratórias"],
 "mal-estar": ["Doenças respiratórias"],
-"vômito": ["Doenças respiratórias", "Doenças
-gastrointestinais", "Doenças neurológicas", "Verminoses"],
-"vômitos": ["Doenças respiratórias", "Doenças
-gastrointestinais", "Doenças neurológicas", "Verminoses"],
+"vômito": ["Doenças respiratórias", "Doenças gastrointestinais", "Doenças neurológicas", "Verminoses"],
+"vômitos": ["Doenças respiratórias", "Doenças gastrointestinais", "Doenças neurológicas", "Verminoses"],
 "cansaço": ["Doenças respiratórias", "Doenças bacterianas",
 "Doenças cardiovasculares", "Verminoses", "Doenças nutricionais"],
 "cólicas": ["Doenças gastrointestinais"],
@@ -141,10 +125,8 @@ gastrointestinais", "Doenças neurológicas", "Verminoses"],
 "Verminoses"],
 "sangue nas fezes": ["Doenças gastrointestinais",
 "Verminoses"],
-"náusea": ["Doenças gastrointestinais", "Doenças
-neurológicas", "Doenças bacterianas", "Verminoses"],
-"náuseas": ["Doenças gastrointestinais", "Doenças
-neurológicas", "Doenças bacterianas", "Verminoses"],
+"náusea": ["Doenças gastrointestinais", "Doenças neurológicas", "Doenças bacterianas", "Verminoses"],
+"náuseas": ["Doenças gastrointestinais", "Doenças neurológicas", "Doenças bacterianas", "Verminoses"],
 "diarreia": ["Doenças gastrointestinais", "Verminoses"],
 "queimação no estômago": ["Doenças gastrointestinais"],
 "azia": ["Doenças gastrointestinais"],
@@ -160,16 +142,14 @@ neurológicas", "Doenças bacterianas", "Verminoses"],
 "aumento da cabeça": ["Doenças neurológicas"],
 "dificuldade na alimentação": ["Doenças neurológicas"],
 "atraso no desenvolvimento": ["Doenças neurológicas"],
-"manchas na pele": ["Doenças bacterianas", "Doenças
-exantemáticas"],
+"manchas na pele": ["Doenças bacterianas", "Doenças exantemáticas"],
 "perda de sensibilidade": ["Doenças bacterianas"],
 "diminuição de sensibilidade": ["Doenças bacterianas"],
 "calor": ["Doenças bacterianas"],
 "formigamento": ["Doenças bacterianas"],
 "dormência": ["Doenças bacterianas"],
 "lesões": ["Doenças bacterianas"],
-"fraqueza": ["Doenças bacterianas", "Doenças
-cardiovasculares", "Verminoses", "Doenças nutricionais"],
+"fraqueza": ["Doenças bacterianas", "Doenças cardiovasculares", "Verminoses", "Doenças nutricionais"],
 "sangramento do nariz": ["Doenças bacterianas"],
 "sangue saindo": ["Doenças bacterianas"],
 "ressecamento dos olhos": ["Doenças bacterianas"],
@@ -182,21 +162,17 @@ cardiovasculares", "Verminoses", "Doenças nutricionais"],
 "dificuldade em ganhar peso": ["Doenças cardiovasculares",
 "Doenças nutricionais"],
 "irritação": ["Doenças cardiovasculares"],
-"mudanças nos hábitos alimentares": ["Doenças
-cardiovasculares"],
+"mudanças nos hábitos alimentares": ["Doenças cardiovasculares"],
 "mudança na alimentação": ["Doenças cardiovasculares"],
 "mudanças no humor": ["Doenças cardiovasculares"],
 "resistência à insulina": ["Doenças cardiovasculares"],
 "infecções": ["Doenças cardiovasculares"],
-"problemas de visão": ["Doenças cardiovasculares", "Doenças
-nutricionais"],
-"dificuldade na cicatrização de feridas": ["Doenças
-cardiovasculares", "Doenças nutricionais"],
+"problemas de visão": ["Doenças cardiovasculares", "Doenças nutricionais"],
+"dificuldade na cicatrização de feridas": ["Doenças cardiovasculares", "Doenças nutricionais"],
 "dores nas pernas": ["Doenças cardiovasculares"],
 "queda de pelos": ["Doenças cardiovasculares"],
 "pele fria": ["Doenças cardiovasculares"],
-"palidez": ["Doenças cardiovasculares", "Doenças
-nutricionais"],
+"palidez": ["Doenças cardiovasculares", "Doenças nutricionais"],
 "insuficiência cardíaca": ["Doenças cardiovasculares"],
 "coceira": ["Verminoses"],
 "aumento de gases": ["Verminoses"],
@@ -230,17 +206,13 @@ resultDiv.innerHTML = "Por favor, digite um sintoma.";
 return;
 }
 if (sintomas[input]) {
-const categorias = sintomas[input];
-let html = "<strong>Possíveis grupos
-relacionados:</strong><ul>";
-categorias.forEach(cat => {
-html += `<li>${cat}</li>`;
-});
-html += "</ul>";
-resultDiv.innerHTML = html;
+    const categorias = sintomas[input];
+    let html = "<strong>Possíveis grupos relacionados:</strong><ul>";
+    categorias.forEach(cat => { html += `<li>${cat}</li>`; });
+    html += "</ul>";
+    resultDiv.innerHTML = html;
 } else {
-resultDiv.innerHTML = "Sintoma não encontrado em nossa
-base de dados.";
+    resultDiv.innerHTML = "Sintoma não encontrado em nossa base de dados.";
 }
 }
 </script>
