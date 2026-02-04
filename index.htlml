@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Busca de Sintomas</title>
+<style>
+body {
+margin: 0;
+padding: 20px;
+background: #f4f7f6;
+font-family: Arial, sans-serif;
+}
+.search-box {
+max-width: 500px;
+margin: 0 auto;
+padding: 20px;
+background: #e8f5e9;
+border: 2px solid #81c784;
+border-radius: 10px;
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.search-box h2 {
+color: #2e7d32;
+margin-bottom: 15px;
+font-size: 20px;
+text-align: center;
+}
+.search-controls {
+display: flex;
+gap: 8px;
+}
+input[type="text"] {
+flex: 1;
+padding: 12px;
+border: 1px solid #81c784;
+border-radius: 5px;
+font-size: 14px;
+outline: none;
+}
+button {
+background-color: #66bb6a;
+color: white;
+border: none;
+padding: 10px 18px;
+border-radius: 5px;
+cursor: pointer;
+font-size: 14px;
+font-weight: bold;
+}
+button:hover {
+background-color: #43a047;
+}
+#result {
+margin-top: 15px;
+background: #f1f8e9;
+border: 1px solid #c5e1a5;
+padding: 15px;
+border-radius: 6px;
+font-size: 15px;
+color: #1b5e20;
+min-height: 40px;
+display: none;
+}
+ul {
+margin: 10px 0 0 0;
+padding-left: 20px;
+}
+li {
+margin-bottom: 6px;
+}
+</style>
+</head>
+<body>
+<div class="search-box">
+<h2>🔍 Pesquise um Sintoma</h2>
+<div class="search-controls">
+<input type="text" id="search" placeholder="Ex: dor de
+cabeça, febre..." onkeypress="handleKeyPress(event)" />
+<button onclick="searchSymptom()">Buscar</button>
+</div>
+<div id="result"></div>
+</div>
+<script>
+const sintomas = {
+"nariz entupido": ["Doenças respiratórias", "Doenças
+bacterianas"],
+"dor de garganta": ["Doenças respiratórias", "Doenças
+bacterianas"],
+"tosse": ["Doenças respiratórias", "Doenças
+gastrointestinais", "Doenças bacterianas", "Verminoses", "Doenças
+exantemáticas"],
+"espirros": ["Doenças respiratórias"],
+"febre": ["Doenças respiratórias", "Doenças
+gastrointestinais", "Doenças neurológicas", "Doenças bacterianas",
+"Verminoses", "Doenças exantemáticas"],
+"coriza": ["Doenças respiratórias"],
+"coriza (nariz escorrendo)": ["Doenças respiratórias"],
+"dor de cabeça": ["Doenças respiratórias", "Doenças
+bacterianas", "Verminoses"],
+"dor muscular": ["Doenças respiratórias"],
+"fadiga": ["Doenças respiratórias", "Doenças
+cardiovasculares", "Doenças nutricionais"],
+"irritabilidade": ["Doenças respiratórias", "Doenças
+neurológicas", "Doenças cardiovasculares", "Verminoses"],
+"dificuldade respiratória": ["Doenças respiratórias",
+"Doenças bacterianas"],
+"dificuldade de respirar": ["Doenças respiratórias",
+"Doenças bacterianas"],
+"sonolência": ["Doenças respiratórias", "Doenças
+neurológicas", "Doenças bacterianas", "Doenças nutricionais"],
+"perda de apetite": ["Doenças respiratórias", "Doenças
+gastrointestinais", "Verminoses", "Doenças nutricionais"],
+"chiado no peito": ["Doenças respiratórias"],
+"ansiedade": ["Doenças respiratórias"],
+"catarro": ["Doenças respiratórias", "Doenças bacterianas"],
+"sudorese noturna": ["Doenças respiratórias", "Doenças
+bacterianas"],
+"perda de peso": ["Doenças respiratórias", "Doenças
+bacterianas"],
+"dor no peito": ["Doenças respiratórias", "Doenças
+gastrointestinais", "Doenças bacterianas", "Doenças
+cardiovasculares"],
+"dificuldade para engolir": ["Doenças respiratórias",
+"Doenças gastrointestinais", "Doenças bacterianas"],
+"vermelhidão nas amígdalas": ["Doenças respiratórias",
+"Doenças bacterianas"],
+"inchaço no pescoço": ["Doenças respiratórias"],
+"dor facial": ["Doenças respiratórias"],
+"dor na cara": ["Doenças respiratórias"],
+"mal-estar": ["Doenças respiratórias"],
+"vômito": ["Doenças respiratórias", "Doenças
+gastrointestinais", "Doenças neurológicas", "Verminoses"],
+"vômitos": ["Doenças respiratórias", "Doenças
+gastrointestinais", "Doenças neurológicas", "Verminoses"],
+"cansaço": ["Doenças respiratórias", "Doenças bacterianas",
+"Doenças cardiovasculares", "Verminoses", "Doenças nutricionais"],
+"cólicas": ["Doenças gastrointestinais"],
+"dor abdominal": ["Doenças gastrointestinais",
+"Verminoses"],
+"sangue nas fezes": ["Doenças gastrointestinais",
+"Verminoses"],
+"náusea": ["Doenças gastrointestinais", "Doenças
+neurológicas", "Doenças bacterianas", "Verminoses"],
+"náuseas": ["Doenças gastrointestinais", "Doenças
+neurológicas", "Doenças bacterianas", "Verminoses"],
+"diarreia": ["Doenças gastrointestinais", "Verminoses"],
+"queimação no estômago": ["Doenças gastrointestinais"],
+"azia": ["Doenças gastrointestinais"],
+"refluxo": ["Doenças gastrointestinais"],
+"regurgitação": ["Doenças gastrointestinais"],
+"desidratação": ["Doenças gastrointestinais", "Verminoses"],
+"rigidez no pescoço": ["Doenças neurológicas"],
+"confusão": ["Doenças neurológicas"],
+"sensibilidade à luz": ["Doenças neurológicas"],
+"manchas vermelhas na pele": ["Doenças neurológicas",
+"Doenças exantemáticas"],
+"convulsões": ["Doenças neurológicas"],
+"aumento da cabeça": ["Doenças neurológicas"],
+"dificuldade na alimentação": ["Doenças neurológicas"],
+"atraso no desenvolvimento": ["Doenças neurológicas"],
+"manchas na pele": ["Doenças bacterianas", "Doenças
+exantemáticas"],
+"perda de sensibilidade": ["Doenças bacterianas"],
+"diminuição de sensibilidade": ["Doenças bacterianas"],
+"calor": ["Doenças bacterianas"],
+"formigamento": ["Doenças bacterianas"],
+"dormência": ["Doenças bacterianas"],
+"lesões": ["Doenças bacterianas"],
+"fraqueza": ["Doenças bacterianas", "Doenças
+cardiovasculares", "Verminoses", "Doenças nutricionais"],
+"sangramento do nariz": ["Doenças bacterianas"],
+"sangue saindo": ["Doenças bacterianas"],
+"ressecamento dos olhos": ["Doenças bacterianas"],
+"rigidez muscular": ["Doenças bacterianas"],
+"espasmos": ["Doenças bacterianas"],
+"acúmulo de gordura no corpo": ["Doenças cardiovasculares"],
+"alteração da pressão": ["Doenças cardiovasculares"],
+"pontas dos dedos roxo": ["Doenças cardiovasculares"],
+"língua roxa": ["Doenças cardiovasculares"],
+"dificuldade em ganhar peso": ["Doenças cardiovasculares",
+"Doenças nutricionais"],
+"irritação": ["Doenças cardiovasculares"],
+"mudanças nos hábitos alimentares": ["Doenças
+cardiovasculares"],
+"mudança na alimentação": ["Doenças cardiovasculares"],
+"mudanças no humor": ["Doenças cardiovasculares"],
+"resistência à insulina": ["Doenças cardiovasculares"],
+"infecções": ["Doenças cardiovasculares"],
+"problemas de visão": ["Doenças cardiovasculares", "Doenças
+nutricionais"],
+"dificuldade na cicatrização de feridas": ["Doenças
+cardiovasculares", "Doenças nutricionais"],
+"dores nas pernas": ["Doenças cardiovasculares"],
+"queda de pelos": ["Doenças cardiovasculares"],
+"pele fria": ["Doenças cardiovasculares"],
+"palidez": ["Doenças cardiovasculares", "Doenças
+nutricionais"],
+"insuficiência cardíaca": ["Doenças cardiovasculares"],
+"coceira": ["Verminoses"],
+"aumento de gases": ["Verminoses"],
+"anemia": ["Verminoses"],
+"obstrução intestinal": ["Verminoses"],
+"problemas pulmonares": ["Verminoses"],
+"calafrios": ["Verminoses"],
+"tonturas": ["Verminoses"],
+"emagrecimento": ["Verminoses"],
+"evacuação com cheiro forte": ["Verminoses"],
+"coceira na região anal": ["Verminoses"],
+"dificuldade para dormir": ["Verminoses"],
+"eliminação de ovos": ["Verminoses"],
+"partes do parasita nas fezes": ["Verminoses"],
+"vermelhidão": ["Doenças exantemáticas"],
+"manchas": ["Doenças exantemáticas"]
+};
+function handleKeyPress(event) {
+if (event.key === "Enter") {
+searchSymptom();
+}
+}
+function searchSymptom() {
+const input =
+document.getElementById("search").value.trim().toLowerCase();
+const resultDiv = document.getElementById("result");
+resultDiv.style.display = "block";
+resultDiv.innerHTML = "";
+if (input === "") {
+resultDiv.innerHTML = "Por favor, digite um sintoma.";
+return;
+}
+if (sintomas[input]) {
+const categorias = sintomas[input];
+let html = "<strong>Possíveis grupos
+relacionados:</strong><ul>";
+categorias.forEach(cat => {
+html += `<li>${cat}</li>`;
+});
+html += "</ul>";
+resultDiv.innerHTML = html;
+} else {
+resultDiv.innerHTML = "Sintoma não encontrado em nossa
+base de dados.";
+}
+}
+</script>
+</body>
+</html>
